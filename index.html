@@ -26,10 +26,10 @@
       <div class="poster-grid">
         <article class="poem-panel">
           <p class="kicker">Self-Care Creative Project</p>
-          <h1>Daily Poetry<br>Vol. 001</h1>
-          <h2>Beauty in becoming</h2>
+          <h1 id="poemVolume">Daily Poetry<br>Vol. 001</h1>
+          <h2 id="poemTitle">Beauty in becoming</h2>
 
-          <div class="poem-text">
+          <div class="poem-text" id="poemBody">
             <p>
               There is a kind of healing<br>
               that does not arrive loudly.<br>
@@ -74,11 +74,10 @@
             <span>#dailypoetry</span>
           </div>
 
-          <div class="theme-tags" aria-label="Project themes">
-            <span>mindfulness</span>
-            <span>stress recovery</span>
-            <span>creativity</span>
-            <span>daily rituals</span>
+          <div class="poem-switcher" aria-label="Poem navigation">
+            <button class="poem-nav" type="button" id="prevPoem">Previous poem</button>
+            <p class="poem-counter" id="poemCounter">01 / 03</p>
+            <button class="poem-nav" type="button" id="nextPoem">Next poem</button>
           </div>
         </article>
 
@@ -199,9 +198,9 @@
       <button class="modal-close" type="button" id="closePosterButton" aria-label="Close expanded poster">Close</button>
       <div class="poster-modal__sheet">
         <p class="kicker">Self-Care Creative Project</p>
-        <h1>Daily Poetry<br>Vol. 001</h1>
-        <h2>Beauty in becoming</h2>
-        <p class="modal-poem">
+        <h1 id="modalPoemVolume">Daily Poetry<br>Vol. 001</h1>
+        <h2 id="modalPoemTitle">Beauty in becoming</h2>
+        <p class="modal-poem" id="modalPoemBody">
           There is a kind of healing that does not arrive loudly. It enters with warm tea, a slower breath, a
           notebook opened after midnight. This semester taught me that self-care is not escape, but a return.
           A return to my body when stress asked too much of it. A return to language when my thoughts felt crowded.
