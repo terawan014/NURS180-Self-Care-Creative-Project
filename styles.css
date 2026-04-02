@@ -1,0 +1,658 @@
+:root {
+  --bg: #f7f3ed;
+  --paper: #e8dece;
+  --paper-deep: #ded2c0;
+  --ink: #3e342a;
+  --muted: #7f6c58;
+  --line: rgba(62, 52, 42, 0.24);
+  --shadow: 0 30px 80px rgba(78, 60, 37, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(234, 224, 209, 0.9), transparent 28%),
+    linear-gradient(180deg, #fbf8f3 0%, #f4eee5 100%);
+  color: var(--ink);
+  font-family: "Cormorant Garamond", serif;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 5px 5px, 7px 7px;
+  mix-blend-mode: soft-light;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+.page-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 36px 0 48px;
+}
+
+.intro-strip {
+  background: rgba(255, 251, 245, 0.7);
+  border: 1px solid rgba(87, 72, 54, 0.12);
+  border-radius: 24px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 12px 24px rgba(87, 72, 54, 0.05);
+  backdrop-filter: blur(8px);
+}
+
+.intro-label,
+.intro-name,
+.intro-link {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.intro-label {
+  color: var(--muted);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.intro-meta {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+}
+
+.intro-name {
+  font-size: 0.85rem;
+}
+
+.intro-subtitle {
+  margin-top: 6px;
+  max-width: 42rem;
+  font-size: 1.15rem;
+  line-height: 1.18;
+}
+
+.intro-link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+  white-space: nowrap;
+}
+
+.poster {
+  padding-bottom: 36px;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: 1.28fr 0.82fr;
+  gap: 28px;
+  background: linear-gradient(180deg, var(--paper) 0%, #e4d8c5 100%);
+  border-radius: 38px;
+  padding: 34px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+  animation: fadeUp 0.9s ease both;
+}
+
+.poster-grid::after {
+  content: "";
+  position: absolute;
+  inset: auto -80px -80px auto;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: rgba(255, 248, 239, 0.4);
+  filter: blur(2px);
+}
+
+.poster-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.32), transparent 18%),
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.08) 48%, transparent 100%);
+  pointer-events: none;
+}
+
+.poem-panel {
+  padding: 14px 10px 10px 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.kicker,
+.eyebrow,
+.entry-date,
+.poster-meta,
+.photo-label {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.kicker {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(1.8rem, 3vw, 2.55rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+h2 {
+  margin-top: 10px;
+  font-size: clamp(1.5rem, 2vw, 1.95rem);
+  font-weight: 500;
+}
+
+.poem-text {
+  margin-top: 22px;
+  max-width: 34rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.92rem;
+  line-height: 1.34;
+}
+
+.poster-meta {
+  margin-top: 26px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+
+.theme-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.theme-tags span {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.73rem;
+  text-transform: lowercase;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 250, 242, 0.52);
+  border: 1px solid rgba(87, 72, 54, 0.12);
+}
+
+.visual-panel {
+  position: relative;
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-content: start;
+  justify-items: end;
+  padding-top: 22px;
+  z-index: 1;
+}
+
+.photo {
+  width: min(100%, 270px);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 18px 40px rgba(46, 34, 21, 0.14);
+}
+
+.photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(140deg, rgba(255, 255, 255, 0.25), transparent 35%),
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1), transparent 22%);
+}
+
+.photo-one {
+  height: 310px;
+  background:
+    linear-gradient(180deg, rgba(20, 20, 20, 0.15), rgba(20, 20, 20, 0.35)),
+    linear-gradient(135deg, #545759 0%, #a2a3a3 44%, #6f6557 100%);
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.photo-two {
+  height: 220px;
+  margin-top: -20px;
+  margin-right: 28px;
+  background:
+    linear-gradient(180deg, rgba(37, 35, 39, 0.1), rgba(37, 35, 39, 0.25)),
+    linear-gradient(135deg, #5a5852 0%, #d9d5cf 48%, #8d8478 100%);
+  width: min(76%, 220px);
+  animation: floatCard 7.5s ease-in-out infinite reverse;
+}
+
+.photo-label {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.signature-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 22px 0 8px;
+}
+
+.signature {
+  color: #463a2f;
+  font-family: "Mrs Saint Delafield", cursive;
+  font-size: clamp(2.7rem, 5vw, 4.3rem);
+  line-height: 0.8;
+  text-align: center;
+  transform: rotate(-8deg);
+}
+
+.pull-quote {
+  margin: 10px 0 2px;
+  width: min(260px, 100%);
+  padding: 14px 14px 12px;
+  border-left: 1px solid rgba(62, 52, 42, 0.24);
+  color: rgba(62, 52, 42, 0.84);
+  font-size: 1.08rem;
+  line-height: 1.1;
+  text-align: left;
+}
+
+.icon-button {
+  width: 76px;
+  height: 76px;
+  border: 0;
+  border-radius: 24px;
+  background: rgba(255, 249, 240, 0.8);
+  box-shadow: 0 10px 24px rgba(86, 68, 48, 0.12);
+  margin-top: 14px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.icon-button:hover,
+.icon-button:focus-visible,
+.intro-link:hover,
+.intro-link:focus-visible {
+  transform: translateY(-2px);
+}
+
+.icon-button:hover,
+.icon-button:focus-visible {
+  box-shadow: 0 14px 28px rgba(86, 68, 48, 0.17);
+  background: rgba(255, 251, 244, 0.95);
+}
+
+.icon-button:focus-visible,
+.intro-link:focus-visible,
+.modal-close:focus-visible {
+  outline: 2px solid rgba(62, 52, 42, 0.4);
+  outline-offset: 4px;
+}
+
+.icon-button span,
+.icon-button span::before,
+.icon-button span::after {
+  content: "";
+  position: absolute;
+}
+
+.icon-button span {
+  width: 24px;
+  height: 24px;
+  border-right: 3px solid var(--ink);
+  border-top: 3px solid var(--ink);
+  right: 23px;
+  top: 23px;
+}
+
+.icon-button span::before {
+  width: 24px;
+  height: 24px;
+  border-left: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  left: -20px;
+  top: 18px;
+}
+
+.icon-button span::after {
+  width: 36px;
+  height: 3px;
+  background: var(--ink);
+  transform: rotate(-45deg);
+  left: -8px;
+  top: 18px;
+}
+
+.moon-button span {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  top: 22px;
+  left: 24px;
+}
+
+.moon-button span::before {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 249, 240, 0.92);
+  left: 10px;
+  top: -3px;
+}
+
+.moon-button span::after {
+  width: 10px;
+  height: 10px;
+  background: var(--ink);
+  clip-path: polygon(50% 0%, 61% 37%, 100% 50%, 61% 63%, 50% 100%, 39% 63%, 0% 50%, 39% 37%);
+  right: -14px;
+  top: 2px;
+}
+
+.archive {
+  padding: 14px 6px 0;
+}
+
+.section-heading {
+  max-width: 780px;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: clamp(1.65rem, 2.2vw, 2.35rem);
+  line-height: 1.02;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.section-copy {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  max-width: 40rem;
+  color: rgba(62, 52, 42, 0.82);
+}
+
+.entry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.entry-card {
+  background: rgba(255, 251, 245, 0.72);
+  border: 1px solid rgba(87, 72, 54, 0.1);
+  border-radius: 24px;
+  padding: 22px 20px;
+  box-shadow: 0 16px 30px rgba(87, 72, 54, 0.06);
+  min-height: 235px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  animation: fadeUp 0.8s ease both;
+}
+
+.entry-card:nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.entry-card:nth-child(3) {
+  animation-delay: 140ms;
+}
+
+.entry-card:nth-child(4) {
+  animation-delay: 210ms;
+}
+
+.entry-card:nth-child(5) {
+  animation-delay: 280ms;
+}
+
+.entry-card:nth-child(6) {
+  animation-delay: 350ms;
+}
+
+.entry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 36px rgba(87, 72, 54, 0.09);
+}
+
+.entry-date {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+h4 {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: 1.75rem;
+  font-weight: 500;
+}
+
+.entry-card p:last-child,
+.entry-card li {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.reflection-card ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.reflection-card li + li {
+  margin-top: 8px;
+}
+
+.poster-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+  z-index: 20;
+}
+
+.poster-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.poster-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(32, 24, 16, 0.48);
+  backdrop-filter: blur(10px);
+}
+
+.poster-modal__content {
+  position: relative;
+  width: min(760px, calc(100% - 28px));
+  z-index: 1;
+}
+
+.poster-modal__sheet {
+  background: linear-gradient(180deg, #f1e9db 0%, #e4d8c5 100%);
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 28px 80px rgba(18, 14, 10, 0.24);
+}
+
+.modal-close {
+  position: absolute;
+  top: -46px;
+  right: 0;
+  border: 0;
+  background: rgba(255, 250, 243, 0.9);
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.modal-poem {
+  margin-top: 18px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  max-width: 38rem;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatCard {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@media (max-width: 920px) {
+  .intro-meta {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .poster-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visual-panel {
+    justify-items: center;
+    padding-top: 0;
+  }
+
+  .photo-two {
+    margin-right: 0;
+  }
+
+  .entry-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(100% - 18px, 100%);
+    padding: 18px 0 34px;
+  }
+
+  .intro-strip {
+    padding: 16px 16px 18px;
+  }
+
+  .poster-grid {
+    padding: 22px 18px;
+    border-radius: 28px;
+    gap: 20px;
+  }
+
+  .poem-text {
+    font-size: 0.8rem;
+  }
+
+  .poster-meta {
+    flex-direction: column;
+  }
+
+  .pull-quote {
+    width: 100%;
+  }
+
+  .entry-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h3 {
+    white-space: normal;
+  }
+
+  .signature {
+    font-size: 3.2rem;
+  }
+
+  .icon-button {
+    width: 66px;
+    height: 66px;
+    border-radius: 20px;
+  }
+
+  .poster-modal__sheet {
+    padding: 22px 18px;
+  }
+}
